@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!$_SESSION['isLogin']){
+    header('Location:login.php');
+}else{
+    header('Location:posts.php');
+}
 
 /**
  * Bu dosya örnek amaçlı olarak oluşturulmuştur. Grupla beraber karar verip
