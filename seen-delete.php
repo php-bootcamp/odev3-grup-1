@@ -1,4 +1,16 @@
 <?php
+require 'data.php';
+session_start();
+if(!$_SESSION['isLogin']){
+    header('Location:login.php');
+}
+
+
+
+$id = $_GET['id'];
+
+$_SESSION["isRead"][$id] = 0;
+header('Location:seen.php');
 
 /**
  * Bu dosya örnek amaçlı olarak oluşturulmuştur. Grupla beraber karar verip

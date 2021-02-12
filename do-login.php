@@ -1,4 +1,21 @@
 <?php
+session_start();
+require 'data.php';
+
+
+if($data_username == $_POST['username'] && $data_password == $_POST['password']){
+    $_SESSION["username"] = $_POST['username'];
+    $_SESSION["isLogin"] = true;
+
+    foreach ($posts as $key){
+        $_SESSION["isRead"][$key['id']]= 0;
+    }
+
+    header('Location:index.php');
+} else {
+    $_SESSION['login'] = $_POST['username'];
+    header('Location: login.php');
+}
 
 /**
  * Bu dosya örnek amaçlı olarak oluşturulmuştur. Grupla beraber karar verip
