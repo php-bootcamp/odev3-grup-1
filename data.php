@@ -1,5 +1,10 @@
 <?php
 
+
+$data_username  = 'bootcamp';
+$data_password = 'bootcamp';
+
+
 $yazilar = array(
 	array(
 		'title' => 'DNS Nedir?',
