@@ -30,22 +30,23 @@ if(!$_SESSION['isLogin']){
 													justify-content: flex-end;
 													height: 40px;
 													margin-top: 20px;">
+                    <a href="posts.php" class="okunanlar btn btn-info" style="margin: 0 5px;  color: purple; border-color: purple; background-color: white;">Tüm Yazılar</a>
 					<a  class="btn btn-info" href="seen.php" style="margin: 0 5px; color: purple; border-color: purple; background-color: white;" class="okunanlar">Okunanlar</a>
 					<a class="btn btn-info" href="logout.php" style="margin: 0 5px; color: purple;  border-color: purple; background-color: white;" class="okunanlar">Çıkış Yap</a>
 				</div>
 			</div>
 		</div>
 		<div class="yazilar col-md-12">
-			<?php foreach ($yazilar as $key => $yazi): ?>
+			<?php foreach ($posts as $key): ?>
 				<div style="padding-bottom: 5px;" > 
 					<div class="col-md-2">
-						<img src="<?php echo $yazi['image']; ?>" class="resim" >
+						<img src="<?php echo $key['image']; ?>" class="resim" >
 					</div>
 					<div class="icerik col-md-10">
-						<h3 style="margin-bottom: 15px;"><?php echo $yazi['title']; ?></h3>
-						<p><?php echo $yazi['brief']; ?></p>
+						<h3 style="margin-bottom: 15px;"><?php echo $key['title']; ?></h3>
+						<p><?php echo $key['brief']; ?></p>
 						<div class="islem pull-right" style="margin-right: 25px;">
-							<a href="post.php?id=<?php echo $key; ?>" class="detay btn btn-info" style=" color: blue; background-color: white;">Detay</a>
+							<a href="post.php?id=<?php echo $key['id']; ?>" class="detay btn btn-info" style=" color: blue; background-color: white;">Detay</a>
 						</div>
 					</div>
 				<div><br>

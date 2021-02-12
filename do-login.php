@@ -7,7 +7,7 @@ if($data_username == $_POST['username'] && $data_password == $_POST['password'])
     $_SESSION["username"] = $_POST['username'];
     $_SESSION["isLogin"] = true;
 
-    foreach ($post as $key){
+    foreach ($posts as $key){
         $_SESSION["isRead"][$key['id']]= 0;
     }
 
