@@ -1,28 +1,42 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>...</title>
-</head>
-<body>
-    <?php
-    
-    /**
-     * Bu dosya örnek amaçlı olarak oluşturulmuştur. Grupla beraber karar verip
-     * dosya isimlerini değiştirebilir veya buradaki işlemleri farklı dosyalara
-     * bölebilirsiniz.
-     */
+<?php
+require_once __DIR__ . '/functions.php';
+?>
+<!DOCTYPE html>
+<html lang="tr">
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Yazılar</title>
+	<link rel="stylesheet" href="style.css">
+<body class="yazilar-sayfa">
 
-    /**
-     * **Giriş yapmış kullanıcının** PHP Bootcamp içerisinde gördüğümüz konularla
-     * alakalı olarak hazırlanmış olan 2 veya daha fazla yazının başlığı, açıklaması,
-     * resmini ve detay linkini/butonunu gördüğü bir sayfa bekliyoruz. Burada _isteğe
-     * bağlı olarak_ bir sayfalama (1. sayfa, 2. sayfa gibi) oluşturabilirsiniz.
-     *  
-     * **Not:** Henüz veritabanı görmediğimiz için bu yazıları sabit (hardcoded)
-     * verebilirsiniz. `data.php` dosyası üzerinden almanız bekleniyor.
-     */
-    
-    ?>
+	<h2 style="text-align: center">
+		Hoş geldin, <?php echo $_SESSION['kullanici']; ?>
+	</h2>
+
+	<div class="menu">
+		<h3 class="baslik">Yazılar</h3>
+		<div style="display: flex">
+			<a href="seen.php" style="margin: 0 5px" class="okunanlar">Okunanlar</a>
+			<a href="logout.php" style="margin: 0 5px" class="okunanlar">Çıkış Yap</a>
+		</div>
+	</div>
+
+	<div class="yazilar">
+		<?php foreach ($yazilar as $key => $yazi): ?>
+			<div class="yazi">
+				<img src="<?php echo $yazi['image']; ?>" class="resim">
+				<div class="icerik">
+					<h3><?php echo $yazi['title']; ?></h3>
+					<p><?php echo $yazi['brief']; ?></p>
+					<div class="islem">
+						<?php if ( get_cookie('key' . $key) != false): ?>
+						<p>okundu</p>
+						<?php endif; ?>
+						<a href="post.php?id=<?php echo $key; ?>" class="detay">Detay</a>
+					</div>
+				</div>
+			</div>
+		<?php endforeach; ?>
+	</div>
 </body>
 </html>
