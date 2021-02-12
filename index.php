@@ -17,3 +17,6 @@ if(!$_SESSION['isLogin']){
   * yapmış kullanıcı** için de yazı listesini(`posts.php`) göreceği sayfaya
   * yönlendirmesi gerekiyor.
   */
+ /**
+  * gittest
+  */
