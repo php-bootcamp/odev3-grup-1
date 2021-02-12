@@ -1,5 +1,12 @@
 <?php
+include('data.php');
 require_once __DIR__ . '/functions.php';
+session_start();
+
+if(!$_SESSION['isLogin']){
+    header('Location:login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -7,36 +14,43 @@ require_once __DIR__ . '/functions.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Yazılar</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <body class="yazilar-sayfa">
+	<div class="col-md-offset-1 col-md-10 col-md-offset-1" style="margin-top: 25px;"> 
+		<h2 style="text-align: center">
+			Hoş geldin, <?php echo $_SESSION['username']; ?>
+		</h2>
 
-	<h2 style="text-align: center">
-		Hoş geldin, <?php echo $_SESSION['kullanici']; ?>
-	</h2>
-
-	<div class="menu">
-		<h3 class="baslik">Yazılar</h3>
-		<div style="display: flex">
-			<a href="seen.php" style="margin: 0 5px" class="okunanlar">Okunanlar</a>
-			<a href="logout.php" style="margin: 0 5px" class="okunanlar">Çıkış Yap</a>
-		</div>
-	</div>
-
-	<div class="yazilar">
-		<?php foreach ($yazilar as $key => $yazi): ?>
-			<div class="yazi">
-				<img src="<?php echo $yazi['image']; ?>" class="resim">
-				<div class="icerik">
-					<h3><?php echo $yazi['title']; ?></h3>
-					<p><?php echo $yazi['brief']; ?></p>
-					<div class="islem">
-						<?php if ( get_cookie('key' . $key) != false): ?>
-						<p>okundu</p>
-						<?php endif; ?>
-						<a href="post.php?id=<?php echo $key; ?>" class="detay">Detay</a>
-					</div>
+		<div class="menu">
+			<div style="display: flex;">
+				<h3 class="baslik" style=" padding-left: 23px;  width: 100%;">Yazılar</h3>
+				<div class="pull-right" style="    text-align: right;
+													display: flex;
+													width: 100%;
+													justify-content: flex-end;
+													height: 40px;
+													margin-top: 20px;">
+					<a  class="btn btn-info" href="seen.php" style="margin: 0 5px; color: purple; border-color: purple; background-color: white;" class="okunanlar">Okunanlar</a>
+					<a class="btn btn-info" href="logout.php" style="margin: 0 5px; color: purple;  border-color: purple; background-color: white;" class="okunanlar">Çıkış Yap</a>
 				</div>
 			</div>
-		<?php endforeach; ?>
+		</div>
+		<div class="yazilar col-md-12">
+			<?php foreach ($yazilar as $key => $yazi): ?>
+				<div style="padding-bottom: 5px;" > 
+					<div class="col-md-2">
+						<img src="<?php echo $yazi['image']; ?>" class="resim" >
+					</div>
+					<div class="icerik col-md-10">
+						<h3 style="margin-bottom: 15px;"><?php echo $yazi['title']; ?></h3>
+						<p><?php echo $yazi['brief']; ?></p>
+						<div class="islem pull-right" style="margin-right: 25px;">
+							<a href="post.php?id=<?php echo $key; ?>" class="detay btn btn-info" style=" color: blue; background-color: white;">Detay</a>
+						</div>
+					</div>
+				<div><br>
+			<?php endforeach; ?>
+		</div>
 	</div>
 </body>
 </html>

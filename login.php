@@ -4,6 +4,9 @@ if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
     $username = $_SESSION['login'];
     unset($_SESSION['login']);
 }
+if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']){
+    header('Location:index.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -44,17 +47,6 @@ if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
         <button type="submit" class="submit">Giriş Yap</button>
     </form>
 </div>
-    /**
-     * Bu dosya örnek amaçlı olarak oluşturulmuştur. Grupla beraber karar verip
-     * dosya isimlerini değiştirebilir veya buradaki işlemleri farklı dosyalara
-     * bölebilirsiniz.
-     */
-
-    /**
-     * **Giriş yapmamış olan kullanıcı için** giriş yapma formunu gösterecek olan
-     * sayfadır. Burada gösterilen forma ait değerlerin `do-login.php`
-     * dosyasına gitmesini bekliyoruz.
-     */
 
 
 </body>
